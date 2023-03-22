@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {ChangeEvent, useState} from 'react';
 import './App.css';
+import {v1} from "uuid";
+import { Note } from './Note';
 
 function App() {
+  const [text, setText] = useState('')
+  const [notes, setNotes]  = useState<{id:string, text: string}[]>([])
+
+  const changeNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.currentTarget.value)
+  }
+
+  const addNote = () => {
+    setNotes(prevState => [...prevState, {id: v1(), text: text}])
+    setText('')
+  }
+
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {notes.map(n=>{
+
+          const removeNote = () => {
+            setNotes(prevState => prevState.filter(el=>el.id!==n.id))
+          }
+
+          const editNote = (text: string) => {
+            setNotes(prevState => prevState.map(el=>el.id===n.id ? {...el, text}: el))
+          }
+
+          return (
+            <Note key={n.id} text={n.text} removeNote={removeNote} editNote={editNote} />
+          )
+        })}
+      </ul>
+      <hr/>
+      <textarea value={text} onChange={changeNote}/>
+      <button onClick={addNote}>+</button>
     </div>
   );
 }
+
+
 
 export default App;
