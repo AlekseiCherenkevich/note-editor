@@ -1,8 +1,9 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {v1} from "uuid";
-import { Note } from './Note';
+import {Note} from './components/Note';
 import {Tag} from "./common/Tag/Tag";
+import {changeNoteUtil} from "./utils/change-note-util";
 
 export const App = () => {
   const [text, setText] = useState('')
@@ -11,24 +12,7 @@ export const App = () => {
   const [filters, setFilters] = useState<string[]>([])
   const [activeFilters, setActiveFilters] = useState<string[]>([])
 
-  const changeNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let text = e.currentTarget.value
-    let tags: string[] = []
-    setText(text)
-    if (text.at(-1) !== '') {
-      const splittedStr = text.split(' ')
-      splittedStr.forEach(word=>{
-        word.trim()
-        if (word[0] === '#' && !tags.includes(word)) {
-          tags.push(word)
-          setTags(tags)
-        }
-      })
-    }
-    if (!text.includes('#')) {
-      setTags([])
-    }
-  }
+  const changeNote = changeNoteUtil(setText, setTags)
 
   const addNote = () => {
     setNotes(prevState => [...prevState, {id: v1(), text: text, tags: tags}])
@@ -67,7 +51,7 @@ export const App = () => {
   return (
     <div className="App">
       <ul>{filters.map(filter=>(
-        <li><button onClick={()=>changeActiveFilter(filter)} style={{backgroundColor: activeFilters.includes(filter) ? 'red' : 'buttonface'}}>{filter}</button></li>
+        <li key={v1()}><button onClick={()=>changeActiveFilter(filter)} style={{backgroundColor: activeFilters.includes(filter) ? 'red' : 'buttonface'}}>{filter}</button></li>
       ))}</ul>
       <ul>
         {filteredNotes.map(n=>{

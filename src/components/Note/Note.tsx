@@ -1,6 +1,7 @@
-import React, {ChangeEvent, FC, useState} from "react";
-import { v1 } from "uuid";
-import {Tag} from "../common/Tag/Tag";
+import React, {FC, useState} from "react";
+import {v1} from "uuid";
+import {Tag} from "../../common/Tag/Tag";
+import {changeNoteUtil} from "../../utils/change-note-util";
 
 
 type Props = {
@@ -28,24 +29,7 @@ export const Note: FC<Props> = ({text, tags, removeNote, editNote}) => {
     deactivateEditMode()
   }
 
-  const changeNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let text = e.currentTarget.value
-    let tags: string[] = []
-    setEditedText(text)
-    if (text.at(-1) !== '') {
-      const splittedStr = text.split(' ')
-      splittedStr.forEach(word=>{
-        word.trim()
-        if (word[0] === '#' && !tags.includes(word)) {
-          tags.push(word)
-          setEditedTags(tags)
-        }
-      })
-    }
-    if (!text.includes('#')) {
-      setEditedTags([])
-    }
-  }
+  const changeNote = changeNoteUtil(setEditedText, setEditedTags)
 
   return <li style={{display: "flex", flexDirection: "column", alignItems: "center", border: '1px solid black'}}>
 
@@ -64,8 +48,10 @@ export const Note: FC<Props> = ({text, tags, removeNote, editNote}) => {
             <button onClick={saveChanges}>save</button>
         </div>
     </>}
-    {editedTags.map((tag)=>(
-      <Tag key={v1()} tag={tag}/>
-    ))}
+    <ul>
+      {editedTags.map((tag)=>(
+        <Tag key={v1()} tag={tag}/>
+      ))}
+    </ul>
   </li>
 }
