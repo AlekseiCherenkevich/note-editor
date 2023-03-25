@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import {useApp} from "./hooks";
-import {Filters} from './components/Filters';
-import {Notes} from './components/Notes';
-import {NewNote} from "./components/NewNote";
+import {Filters} from './components';
+import {Notes} from './components';
+import {NewNote} from "./components";
 
 export const App = () => {
   const {filteredNotes, filters, text, activeFilters, addNote, changeActiveFilter, changeNote, setNotes} = useApp()

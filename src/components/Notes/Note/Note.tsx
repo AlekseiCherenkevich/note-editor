@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {v1} from "uuid";
-import {Tag} from "../../../common/Tag";
+import {Tag} from "../../../common";
 import {useNote} from "../../../hooks";
 
 
