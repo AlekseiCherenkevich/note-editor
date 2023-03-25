@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import './Tag.scss'
 
 
 type Props = {
@@ -6,5 +7,5 @@ type Props = {
 }
 
 export const Tag: FC<Props> = ({tag}) => {
-  return <li style={{backgroundColor: 'red', display: 'block', width: 'fit-content'}}>{tag}</li>
+  return <li className={'tag'} style={{}}>{tag}</li>
 }

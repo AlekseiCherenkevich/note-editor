@@ -1,0 +1,10 @@
+.filters {
+ display: flex;
+ flex-wrap: wrap;
+ width: 100%;
+ height: fit-content;
+
+  li {
+  display: inline-flex;
+ }
+}

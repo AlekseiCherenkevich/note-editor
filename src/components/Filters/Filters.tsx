@@ -1,5 +1,7 @@
 import React, {FC} from "react";
 import {v1} from "uuid";
+import './Filters.scss'
+import {Button} from "../../common";
 
 type PropsType = {
   filters: string[]
@@ -10,8 +12,8 @@ type PropsType = {
 export const Filters: FC<PropsType> = ({filters, activeFilters, changeActiveFilter}) => {
 
   const renderedFilters = filters.map(filter=>(
-    <li key={v1()}><button onClick={()=>changeActiveFilter(filter)} style={{backgroundColor: activeFilters.includes(filter) ? 'red' : 'buttonface'}}>{filter}</button></li>
+    <li key={v1()}><Button callback={()=>changeActiveFilter(filter)} style={{backgroundColor: activeFilters.includes(filter) ? 'red' : 'inherit'}}>{filter}</Button></li>
   ))
 
-  return <ul>{renderedFilters}</ul>
+  return <ul className={'filters'}>{renderedFilters}</ul>
 }

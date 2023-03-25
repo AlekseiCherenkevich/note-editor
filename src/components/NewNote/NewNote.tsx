@@ -1,4 +1,6 @@
 import React, {ChangeEvent, FC} from "react";
+import {Button, Textarea} from "../../common";
+import './NewNote.scss'
 
 type PropsType = {
   text: string
@@ -7,11 +9,11 @@ type PropsType = {
 }
 
 export const NewNote:FC<PropsType> = ({text, changeNote, addNote}) => {
-  return <>
-    <textarea value={text} onChange={changeNote}/>
+  return <div className={'new-note'}>
+    <Textarea value={text} onChange={changeNote}/>
     {/*<ul>{tags.map((tag)=>(*/}
     {/*  <Tag key={v1()} tag={tag}/>*/}
     {/*))}</ul>*/}
-    <button onClick={addNote}>+</button>
-  </>
+    <Button callback={addNote}>add note</Button>
+  </div>
 }

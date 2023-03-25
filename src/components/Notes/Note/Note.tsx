@@ -1,7 +1,8 @@
 import React, {FC} from "react";
 import {v1} from "uuid";
-import {Tag} from "../../../common";
+import {Button, Tag} from "../../../common";
 import {useNote} from "../../../hooks";
+import './Note.scss'
 
 
 type Props = {
@@ -22,25 +23,25 @@ export const Note: FC<Props> = ({text, tags, removeNote, editNote}) => {
   const isActiveModeLayout = <>
     <textarea value={editedText} onChange={changeNote}/>
     <div style={{display: "flex"}}>
-      <button onClick={cancelChanges}>cancel</button>
-      <button onClick={saveChanges}>save</button>
+      <Button callback={cancelChanges}>cancel</Button>
+      <Button callback={saveChanges}>save</Button>
     </div>
   </>
 
   const isNotActiveModeLayout = <>
-    <p>{text}</p>
+    <p className={'note-text'}>{text}</p>
     <div style={{display: "flex"}}>
-      <button onClick={removeNote}>remove</button>
-      <button onClick={activateEditMode}>edit</button>
+      <Button callback={removeNote}>remove</Button>
+      <Button callback={activateEditMode}>edit</Button>
     </div>
   </>
 
-  return <li style={{display: "flex", flexDirection: "column", alignItems: "center", border: '1px solid black'}}>
+  return <li>
     {edit
       ? isActiveModeLayout
       : isNotActiveModeLayout
     }
-    <ul>
+    <ul className={'tags'}>
       {renderedTags}
     </ul>
   </li>

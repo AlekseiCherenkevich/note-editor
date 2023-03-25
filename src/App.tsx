@@ -1,22 +1,27 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {useApp} from "./hooks";
-import {Filters} from './components';
-import {Notes} from './components';
-import {NewNote} from "./components";
+import {Filters, NewNote, Notes} from './components';
+import {Container} from "./common";
 
 export const App = () => {
   const {filteredNotes, filters, text, activeFilters, addNote, changeActiveFilter, changeNote, setNotes} = useApp()
 
   return (
-    <div className="App">
-      <Filters activeFilters={activeFilters} filters={filters} changeActiveFilter={changeActiveFilter}/>
+    <div className="app">
+      <Container>
+        <Filters activeFilters={activeFilters} filters={filters} changeActiveFilter={changeActiveFilter}/>
+      </Container>
       <Notes filteredNotes={filteredNotes} setNotes={setNotes}/>
-      <hr/>
-      <NewNote text={text} addNote={addNote} changeNote={changeNote}/>
+      <Container>
+        <NewNote text={text} addNote={addNote} changeNote={changeNote}/>
+      </Container>
+
     </div>
   );
 }
+
+
 
 
 

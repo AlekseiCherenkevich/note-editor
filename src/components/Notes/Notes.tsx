@@ -1,6 +1,7 @@
 import {NoteType} from "../../hooks";
 import React, {FC} from "react";
-import {Note} from "./Note";
+import {Container} from "../../common";
+import { Note } from "./Note";
 
 type NotesPropsType = {
   filteredNotes: NoteType[]
@@ -14,7 +15,7 @@ export const Notes: FC<NotesPropsType> = ({filteredNotes, setNotes}) => {
 
     const editNote = (text: string, tags: string[]) => setNotes((prevState: NoteType[]) => prevState.map(el=>el.id===n.id ? {...el, text, tags}: el))
 
-    return <Note key={n.id} text={n.text} tags={n.tags} removeNote={removeNote} editNote={editNote} />
+    return <Container><Note key={n.id} text={n.text} tags={n.tags} removeNote={removeNote} editNote={editNote} /></Container>
   })
 
   return <ul>{renderedNotes}</ul>
