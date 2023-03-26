@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/note-pad.iml" filepath="$PROJECT_DIR$/.idea/note-pad.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/note-editor.iml" filepath="$PROJECT_DIR$/.idea/note-editor.iml" />
     </modules>
   </component>
 </project>
