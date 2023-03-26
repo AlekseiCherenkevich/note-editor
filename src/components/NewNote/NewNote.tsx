@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from "react";
+import React, {ChangeEvent, FC, KeyboardEvent} from "react";
 import {Button, Textarea} from "../../common";
 import './NewNote.scss'
 
@@ -9,8 +9,15 @@ type PropsType = {
 }
 
 export const NewNote:FC<PropsType> = ({text, changeNote, addNote}) => {
+  const saveTextAreaValue = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      console.log(e)
+      addNote()
+    }
+  }
+
   return <div className={'new-note'}>
-    <Textarea value={text} onChange={changeNote}/>
+    <Textarea value={text} onChange={changeNote} saveTextAreaValue={saveTextAreaValue}/>
     {/*<ul>{tags.map((tag)=>(*/}
     {/*  <Tag key={v1()} tag={tag}/>*/}
     {/*))}</ul>*/}

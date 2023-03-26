@@ -14,7 +14,7 @@ export const App = () => {
       </Container>
       <Notes filteredNotes={filteredNotes} setNotes={setNotes}/>
       <Container>
-        <NewNote text={text} addNote={addNote} changeNote={changeNote}/>
+        <NewNote text={text} addNote={addNote} changeNote={e=>changeNote(e, null)}/>
       </Container>
 
     </div>

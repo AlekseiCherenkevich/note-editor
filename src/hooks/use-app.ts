@@ -19,11 +19,15 @@ export const useApp = () => {
 
   const changeNote = changeNoteUtil(setText, setTags)
 
+  console.log(text)
+
   const addNote = () => {
     const newNote = {id: v1(), text: text, tags: tags}
-    setNotes(prevState => [...prevState, newNote])
-    setText('')
-    setTags([])
+    if (text.trim().length > 0) {
+      setNotes(prevState => [...prevState, newNote])
+      setText('')
+      setTags([])
+    }
   }
 
   const changeActiveFilter = (filter: string) => {
@@ -54,5 +58,5 @@ export const useApp = () => {
     }
   })
 
-  return {filteredNotes, filters, text, activeFilters, changeNote, addNote, changeActiveFilter, setNotes}
+  return {filteredNotes, filters, text, activeFilters, changeNote, setText, addNote, changeActiveFilter, setNotes}
 }
