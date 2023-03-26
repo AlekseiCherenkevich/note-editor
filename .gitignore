@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 trash.tsx
+
+# Local Netlify folder
+.netlify
