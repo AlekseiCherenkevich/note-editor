@@ -1,3 +1,6 @@
+[build]
+base = "note-editor/"
+publish = "note-editor/build"
 [[redirects]]
 from = "/*"
 to = "/index.html"
