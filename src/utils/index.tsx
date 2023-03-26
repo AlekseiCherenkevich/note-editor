@@ -1,1 +1,2 @@
-export * from './change-note-util'
+export * from './change-text'
+export * from './split-text'

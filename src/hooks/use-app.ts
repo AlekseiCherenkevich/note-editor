@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {changeNoteUtil} from "../utils";
+import {changeText} from "../utils";
 import {v1} from "uuid";
 
 export type NoteType = {id:string, text: string, tags: string[]}
@@ -17,11 +17,10 @@ export const useApp = () => {
   const [filters, setFilters] = useState<string[]>(getLocalStorageData().filters)
   const [activeFilters, setActiveFilters] = useState<string[]>([])
 
-  const changeNote = changeNoteUtil(setText, setTags)
-
-  console.log(text)
+  const changeNote = changeText(setText, setTags)
 
   const addNote = () => {
+    console.log('text ', text)
     const newNote = {id: v1(), text: text, tags: tags}
     if (text.trim().length > 0) {
       setNotes(prevState => [...prevState, newNote])

@@ -1,6 +1,5 @@
 import {useState} from "react";
-import {changeNoteUtil} from "../utils";
-
+import {changeText} from "../utils";
 
 export const useNote = (text: string, tags: string[], editNote: (editedText: string, editedTags: string[])=> void) => {
   const [edit, setEdit] = useState(false)
@@ -21,7 +20,7 @@ export const useNote = (text: string, tags: string[], editNote: (editedText: str
     deactivateEditMode()
   }
 
-  const changeNote = changeNoteUtil(setEditedText, setEditedTags)
+  const changeNote = changeText(setEditedText, setEditedTags)
 
   return {edit, editedText, changeNote, activateEditMode, saveChanges, cancelChanges}
 }
