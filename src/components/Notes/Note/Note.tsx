@@ -1,9 +1,10 @@
-import React, { FC } from "react";
-import { v1 } from "uuid";
-import { Button, Tag } from "../../../common";
-import { useNote } from "../../../hooks";
-import { getHighlightedText, splitText } from "../../../utils";
+import React, {FC} from "react";
+import {v1} from "uuid";
+import {Button, Tag} from "../../../common";
+import {useNote} from "../../../hooks";
+import {getHighlightedText, splitText} from "../../../utils";
 import "./Note.scss";
+import {useChangeText} from "../../../hooks";
 
 type Props = {
   text: string;
@@ -24,18 +25,22 @@ export const Note: FC<Props> = ({ text, tags, removeNote, editNote }) => {
   } = useNote(text, tags, editNote);
 
   const splittedText = splitText(editedText, editedTags);
-
   const highlightedText = getHighlightedText(splittedText, tags);
 
+  const {ref, changeNoteText} = useChangeText(changeNote)
+
   const renderedTags = editedTags.map((tag) => <Tag key={v1()} tag={tag} />);
+
+
 
   const isActiveModeLayout = (
     <>
       <p
+        ref={ref}
         className={"editableParagraph"}
         contentEditable={true}
         dangerouslySetInnerHTML={{ __html: highlightedText }}
-        onInput={(e) => changeNote(null, e.currentTarget.textContent)}
+        onInput={changeNoteText}
       ></p>
       <div className={"buttons"}>
         <Button callback={cancelChanges}>cancel</Button>
@@ -65,3 +70,7 @@ export const Note: FC<Props> = ({ text, tags, removeNote, editNote }) => {
     </li>
   );
 };
+
+
+
+

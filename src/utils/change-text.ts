@@ -17,7 +17,7 @@ export const changeText =
 
     let tags: string[] = [];
 
-    let splittedStr = str.split(/(#*[a-z\d-]+)/gi);
+    let splittedStr = str.split(/(#*[a-я\d-]+)/gi);
     if (splittedStr.some((el) => el[0] === "#")) {
       splittedStr.forEach((el) => {
         if (el[0] === "#") {
